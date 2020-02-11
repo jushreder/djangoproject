@@ -1,0 +1,43 @@
+{% load static %}
+<div class="navbar">
+  <a href="#"
+    ><img class="logo" src="{% static 'img/logo.svg' %}" alt="logo"
+  /></a>
+  <ul class="block-menu">
+    <li class="menu-li">
+      <a
+        class="menu {% if request.resolver_match.url_name == 'main' %}activ-menu{% endif %}"
+        href="{% url 'main' %}"
+        >HOME</a>
+    </li>
+    <li class="menu-li">
+      <a
+        class="menu {% if request.resolver_match.url_name == 'products' %}activ-menu{% endif %}"
+        href="{% url 'products' %}"
+        >PRODUCTS</a>
+    </li>
+    <li class="menu-li">
+      <a
+        class="menu {% if request.resolver_match.url_name == 'history' %}activ-menu{% endif %}"
+        href="{% url 'history' %}"
+        >HISTORY</a>
+    </li>
+    <li class="menu-li">
+      <a
+        class="menu {% if request.resolver_match.url_name == 'showroom' %}activ-menu{% endif %}"
+        href="{% url 'showroom' %}"
+        >SHOWROOM</a>
+    </li>
+    <li class="menu-li">
+      <a
+        class="menu {% if request.resolver_match.url_name == 'contact' %}activ-menu{% endif %}"
+        href="{% url 'contact' %}"
+        >CONTACT</a>
+    </li>
+    <li class="menu-li">
+      <a href="#">
+        <img class="img-menu" src="{% static 'img/search.png' %}" alt="search"
+      /></a>
+    </li>
+  </ul>
+</div>

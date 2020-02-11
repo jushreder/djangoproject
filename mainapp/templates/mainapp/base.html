@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>
+    {% block title %}
+    {{ title|title }} 
+    {% endblock title %}
+    </title>
+
+    {% block css %}
+    <link rel="stylesheet" href="{% get_static_prefix %}css/style.css" />
+    {% endblock css %}
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,700&display=swap"
+      rel="stylesheet"
+    />
+    {% block js %}
+    {% endblock js %}
+  </head>
+
+  <body>
+    <div class="Product-Container">
+      {% block header %} {% endblock header %}
+      {% block content %} {% endblock content %}
+      {% block back-img %} {% endblock back-img %}
+      {% block footer %}
+      <div class="footer-back">
+        <div class="footer-1">
+          <h2 class="Contact_Us">Contact Us</h2>
+          <p class="contact">
+            132A Bridge Road Richmond VIC Australia. <br /><br />
+            Talk to us on 1300 132 info@interior.com
+          </p>
+        </div>
+        <div class="footer-2">
+          <h2 class="Useful">Useful Information</h2>
+          <div class="footer-22">
+            <div class="footer-221">
+              <p class="foot-221">Sales terms Customer care Delivery</p>
+            </div>
+            <div class="footer-222">
+              <p class="foot-222">
+                Architect accounts Careers <br />
+                Exchanges & returns
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="footer-4">
+          <h2 class="Let">Let’s Stay in Touch!</h2>
+          <p class="Suscribe">
+            Suscribe to know about our latest news, products and special offers
+            just for suscribers.
+          </p>
+
+          <input
+            class="text"
+            type="text"
+            size="14"
+            placeholder="your email address"
+          />
+          <a href="#">
+            <img class="teleg" src="{% static 'img/teleg.png' %}" alt="teleg"
+          /></a>
+        </div>
+        <div class="footer-5">
+          <p class="Copyright">
+            &copy; Copyright - INTERIOR {% now "Y" %}. All Rights Reserved.
+          </p>
+          <div class="link">
+            <a href="#"
+              ><div class="link-0">
+                <img
+                  class="link-1"
+                  src="{% static 'img/fb.png' %}"
+                  alt="fb"
+                /></div
+            ></a>
+            <a href="#"
+              ><div class="link-0">
+                <img
+                  class="link-2"
+                  src="{% static 'img/twitter.png' %}"
+                  alt="twitter"
+                /></div
+            ></a>
+            <a href="#"
+              ><div class="link-0">
+                <img
+                  class="link-3"
+                  src="{% static 'img/g_plus.png' %}"
+                  alt=""
+                /></div
+            ></a>
+            <a href="#"
+              ><div class="link-0">
+                <img
+                  class="link-4"
+                  src="{% get_static_prefix %}img/pinterest.png"
+                  alt=""
+                /></div
+            ></a>
+          </div>
+          <p class="Terms">Terms & Conditions / Privacy policy & Cookies</p>
+        </div>
+      </div>
+      {% endblock footer %}
+    </div>
+  </body>
+</html>
