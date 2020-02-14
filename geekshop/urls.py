@@ -15,25 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
+from django.conf import settings
+from django.conf.urls.static import static
+
 import mainapp.views as mainapp
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', mainapp.main, name='main'),
-    path('products/', mainapp.products, name='products'),
-    path('products/all', mainapp.products, name='products_all'),
-    path('products/home', mainapp.products, name='products_home'),
-    path('products/office', mainapp.products, name='products_office'),
-    path('products/furniture', mainapp.products, name='products_furniture'),
-    path('products/modern', mainapp.products, name='products_modern'),
-    path('products/classic', mainapp.products, name='products_classic'),
+    path('products/', include('mainapp.urls', namespace='products')),
     path('contact/', mainapp.contact, name='contact'),
     path('history/', mainapp.history, name='history'),
-    path('showroom/', mainapp.showroom, name='showroom'),
-    path('showroom/all', mainapp.showroom, name='showroom_all'),
-    path('showroom/home', mainapp.showroom, name='showroom_home'),
-    path('showroom/office', mainapp.showroom, name='showroom_office'),
-    path('showroom/furniture', mainapp.showroom, name='showroom_furniture'),
-    path('showroom/modern', mainapp.showroom, name='showroom_modern'),
-    path('showroom/classic', mainapp.showroom, name='showroom_classic'),
+    path('showroom/', include('mainapp.showroom_urls', namespace='showroom')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -6,7 +6,7 @@
 
           {% include 'mainapp/includes/inc_menu.html' %}
 
-        <h2 class="Contact-Us">Contact Us  {% now "D H M Y" %}</h2>
+        <h2 class="Contact-Us">Contact Us {{ vizit_date }} </h2>
       </div>
 {% endblock header %}
 
@@ -23,7 +23,7 @@
             <p class="Comtact-Phone Comtact-Phone-m">Email:</p>
             <p class="Comtact-number">{{ location.email }}</p>
             <p class="Comtact-Phone">Address:</p>
-            <p class="Comtact-address">{{ location.address }}</p>
+            <p class="Comtact-address">{{ location.address }}, {{ location.city }}, {{location.state}}</p>
           </div>
         </div>
         {% endfor %}

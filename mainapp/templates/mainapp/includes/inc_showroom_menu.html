@@ -1,0 +1,7 @@
+{% for link in links_menu %}
+<li class="prod-menu">
+    <a href="{% url 'showroom:category' link.pk %}" class="menu-pr {% if request.resolver_match.url_name == link.pk %}active-menu-pr{% endif %}">
+        {{ link.name|upper }}
+    </a>
+</li>
+{% endfor %}

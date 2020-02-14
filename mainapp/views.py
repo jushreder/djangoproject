@@ -1,6 +1,10 @@
 from django.shortcuts import render
-import json
+from django.conf import settings
+from django.utils import timezone
 
+from mainapp.models import Contact, ProductCategory
+
+import json
 
 def getProduct(name_file):
     json_data = open(name_file)
@@ -16,43 +20,22 @@ def main(request):
     content= {'title' : title, 'featured_products' : featured_products}
     return render(request, 'mainapp/index.html', content)
     
-def products(request):
+def products(request,pk=None):
+    print(pk)
     title = 'pRODUCTS'
-    links_menu = [
-        {"href": "products_all", "name": "all"},
-        {"href": "products_home", "name": "home"},
-        {"href": "products_office", "name": "office"},
-        {"href": "products_furniture", "name": "futniture"},
-        {"href": "products_modern", "name": "modern"},
-        {"href": "products_classic", "name": "classic"},
-    ]
+    links_menu = ProductCategory.objects.all() 
+
     products = getProduct('static/products_list.json')
     content= {'title' : title, 'links_menu': links_menu, 'products' : products}
     return render(request, 'mainapp/products.html', content)
     
 def contact(request):
     title = 'cONTACTS'
-    locations=[
-        {
-        'city' : 'CALIFORNIA',
-        'phone': '1900-1234-5678',
-        'email': 'info@iterior.com',
-        'address': '12 W 1st St, 90001 Los Angeles, California'
-        },
-        {
-        'city' : 'CALIFORNIA',
-        'phone': '1900-5678-1234',
-        'email': 'info@iterior.com',
-        'address': '9 W 2st St, 90001 Los Angeles, California'
-        },
-        {
-        'city' : 'CALIFORNIA',
-        'phone': '1900-8765-4321',
-        'email': 'info@iterior.com',
-        'address': '10 W 3st St, 90001 Los Angeles, California'
-        }, 
-    ]
-    content ={'title' : title, 'locations': locations}
+    
+    locations = Contact.objects.all()
+    vizit_date = timezone.now()
+ 
+    content ={'title' : title, 'locations': locations, 'vizit_date': vizit_date}
     return render(request, 'mainapp/contact.html', content)
 
 def history(request):
@@ -60,16 +43,11 @@ def history(request):
     content ={'title' : title}
     return render(request, 'mainapp/history.html', content)
 
-def showroom(request):
+def showroom(request,pk=None):
+    print(pk)
     title = 'sHOWROOM'
-    links_menu = [
-        {"href": "showroom_all", "name": "all"},
-        {"href": "showroom_home", "name": "home"},
-        {"href": "showroom_office", "name": "office"},
-        {"href": "showroom_furniture", "name": "futniture"},
-        {"href": "showroom_modern", "name": "modern"},
-        {"href": "showroom_classic", "name": "classic"},
-    ]
+    links_menu = ProductCategory.objects.all()
+ 
     content ={'title' : title, 'links_menu' : links_menu}
     return render(request, 'mainapp/showroom.html', content)
 
