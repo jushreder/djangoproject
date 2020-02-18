@@ -19,8 +19,8 @@
   </div>    
         <div class="Product-set set-1">
           {% for product in products %}
-          <div class="product-11 treding-prod">
-            <img src="{% get_static_prefix %}{{ product.image_src }}" alt="{{ product.name }}">
+          <div class="treding-prod"> 
+            <img src="{% get_media_prefix %}{{ product.image}}" alt="{{ product.name }}">
           </div> 
          {% endfor %}  
  
@@ -61,5 +61,3 @@
 </div>
 {% endblock content %}
 
-{% block back-img %}
-{% endblock back-img %}

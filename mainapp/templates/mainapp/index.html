@@ -48,12 +48,15 @@
           ></a>
         </div>
         <div class="tab-content">
-
+        
+        {% comment 'комментарий' %}
+        <a href="{{ product.image_href }}">
+        {% endcomment %}
 
          {% for product in featured_products %}
-          <div class="product-1" style ="background-image: url({{ product.image_src }});" >
+          <div class="product-1" style ="background-image: url('{% get_media_prefix %}{{ product.image }}');" >
             <div class="back-prod">
-              <a href="{{ product.image_href }}">
+              <a href="{{ product.name }}">
                 <div class="but-prod">
                   <img
                     class="arrrow-prod"
@@ -62,7 +65,7 @@
                   /></div
               ></a>
               <h2 class="h-prod">{{ product.name|capfirst }}</h2>
-              <p class="p-prod"> {{ product.desc }}</p>
+              <p class="p-prod"> {{ product.description }}</p>
             </div>
           </div>
           {% endfor %}

@@ -28,6 +28,7 @@ urlpatterns = [
     path('contact/', mainapp.contact, name='contact'),
     path('history/', mainapp.history, name='history'),
     path('showroom/', include('mainapp.showroom_urls', namespace='showroom')),
+    path('auth/', include('authapp.urls', namespace='auth'))
 ]
 
 if settings.DEBUG:

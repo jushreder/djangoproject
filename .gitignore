@@ -6,3 +6,4 @@ pyvenv.cfg
 *.pyc
 .vscode
 _pycache_
+__init__.py

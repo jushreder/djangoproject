@@ -34,10 +34,25 @@
         href="{% url 'contact' %}"
         >CONTACT</a>
     </li>
+    {% if user.is_authenticated %}
+    <li class="menu-li">
+       <a class="menu"  href="{% url 'auth:edit' %}"> 
+          {{ user.first_name|default:'user' }}          
+       </a>
+    </li>
+    {% endif %}
+    <li class="menu-li">
+      {% if user.is_authenticated %}
+        <a class="menu" href="{% url 'auth:logout' %}">logout</a>
+      {% else %}
+        <a class="menu" href="{% url 'auth:login' %}"> login </a>
+      {% endif %}
+    </li>
     <li class="menu-li">
       <a href="#">
         <img class="img-menu" src="{% static 'img/search.png' %}" alt="search"
       /></a>
     </li>
+    
   </ul>
 </div>

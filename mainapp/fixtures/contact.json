@@ -1,0 +1,35 @@
+[
+  {
+    "model": "mainapp.contact",
+    "pk" :1,
+    "fields":{
+      "state" : "Colifornia",
+      "city" : "Los Angeles",
+      "phone" : "1900-1234-5678",
+      "email" : "info.california@iterrior.com",
+      "address" : "9 W 2 st Street, 60001"
+    }
+  },
+  {
+    "model": "mainapp.contact",
+    "pk" :2,
+    "fields":{
+      "state" : "Illinois",
+      "city" : "Chicago",
+      "phone" : "1900-6789-0123",
+      "email" : "info.illinois@iterior.com",
+      "address" : "603 Brazos Street, 78701"
+    }
+  },
+  {
+    "model": "mainapp.contact",
+    "pk" :3,
+    "fields":{
+      "state" : "Texas",
+      "city" : "Austin",
+      "phone" : "1900-5678-1234",
+      "email" : "info.texas@iterior.com",
+      "address" : "450 East North Street, 60611"
+    }
+  }
+]
