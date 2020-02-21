@@ -28,7 +28,8 @@ urlpatterns = [
     path('contact/', mainapp.contact, name='contact'),
     path('history/', mainapp.history, name='history'),
     path('showroom/', include('mainapp.showroom_urls', namespace='showroom')),
-    path('auth/', include('authapp.urls', namespace='auth'))
+    path('auth/', include('authapp.urls', namespace='auth')),
+    path('basket/', include('basketapp.urls', namespace='basket')),
 ]
 
 if settings.DEBUG:

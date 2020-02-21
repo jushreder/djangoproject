@@ -1,9 +1,22 @@
-    {% for link in links_menu %}
-    <li class="prod-menu">
-        <a href="{% url 'products:category' link.pk %}" class="menu-pr {% if request.resolver_match.url_name == link.pk %}active-menu-pr{% endif %}">
-            {{ link.name|upper }}
-        </a>
-    </li>
-    {% endfor %}
- 
+<li class="prod-menu">
+  <a
+    href="{% url 'products:category' 0 %}"
+    class="menu-pr {% if request.resolver_match.kwargs.pk == 0 %}
+    active-menu-pr
+              {% endif %}"
+  >
+    ALL
+  </a>
+</li>
 
+{% for link in links_menu %}
+
+<li class="prod-menu">
+  <a
+    href="{% url 'products:category' link.pk %}"
+    class="menu-pr {% if request.resolver_match.kwargs.pk|add:'0' == link.pk %}active-menu-pr{% endif %}"
+  >
+    {{ link.name|upper }}
+  </a>
+</li>
+{% endfor %}

@@ -15,12 +15,22 @@
           {% include 'mainapp/includes/inc_categories_menu.html' %}
     </ul>   
           <div class="strock-line"></div>
-          <div class="strock-line-active"></div>
   </div>    
         <div class="Product-set set-1">
           {% for product in products %}
-          <div class="treding-prod"> 
-            <img src="{% get_media_prefix %}{{ product.image}}" alt="{{ product.name }}">
+          <div class="treding-prod" style="background-image: url('{% get_media_prefix %}{{ product.image }}');"> 
+            <div class="back-prod">
+              <a href="{% url 'basket:add' product.pk %}">
+                <div class="but-prod but-Product">
+                  <img
+                    class="arrrow-prod"
+                    src="{% static 'img/arrow.svg' %}"
+                    alt="arrow"
+                  /></div
+              ></a>
+              <h2 class="h-prod">{{ product.name|capfirst }}</h2>
+              <p class="p-prod"> {{ product.description }}</p>
+            </div>
           </div> 
          {% endfor %}  
  

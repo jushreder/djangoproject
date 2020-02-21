@@ -12,7 +12,7 @@
     </li>
     <li class="menu-li">
       <a
-        class="menu {% if request.resolver_match.url_name == 'products' %}activ-menu{% endif %}"
+        class="menu {% if request.resolver_match.namespace == 'products' %}activ-menu{% endif %}"
         href="{% url 'products:index' %}"
         >PRODUCTS</a>
     </li>
@@ -24,7 +24,7 @@
     </li>
     <li class="menu-li">
       <a
-        class="menu {% if request.resolver_match.url_name == 'showroom' %}activ-menu{% endif %}"
+        class="menu {% if request.resolver_match.namespace == 'showroom' %}activ-menu{% endif %}"
         href="{% url 'showroom:index' %}"
         >SHOWROOM</a>
     </li>
@@ -48,11 +48,22 @@
         <a class="menu" href="{% url 'auth:login' %}"> login </a>
       {% endif %}
     </li>
+   {% comment %}
     <li class="menu-li">
       <a href="#">
         <img class="img-menu" src="{% static 'img/search.png' %}" alt="search"
       /></a>
     </li>
-    
+    {% endcomment %}
+    <!-- <li class="menu-li">
+      <i class="fa fa-shopping-basket fa-lg"></i>
+    </li> -->
+
+    <a href="{% url 'basket:view' %}" class="fa fa-shopping-basket fa-lg basket">
+      <span>
+          <!-- {% if basket %} {{ basket|length }} {% endif %} -->
+          {% if total_amount %} {{ total_amount }} -> {{ total_cost }} {% endif %}
+      </span>
+  </a>
   </ul>
 </div>

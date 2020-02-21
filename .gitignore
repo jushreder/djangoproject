@@ -7,3 +7,4 @@ pyvenv.cfg
 .vscode
 _pycache_
 __init__.py
+static/fonts/
