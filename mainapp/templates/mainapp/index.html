@@ -31,13 +31,13 @@
         <div class="tab-controll">
           <div class="tan-cont">
             <ul>
-              <li class="tan_list tan_active">
-                <a class="Featured" href="#" #>Featured</a>
+              <li class="tan_list ">
+                <a class="Featured tan_active" href="" #>Featured</a>
               </li>
-              <li class="tan_list "><a class="New" href="#">New</a></li>
+              <li class="tan_list"><a class="New" href="">New</a></li>
             </ul>
           </div>
-          <a class="btn-link" href="#">
+          <a class="btn-link" href="{% url 'products:index' %}">
             <div class="btn-ghost">
               <h2 class="btn">explore all</h2>
               <img
@@ -56,7 +56,7 @@
          {% for product in featured_products %}
           <div class="product-1" style ="background-image: url('{% get_media_prefix %}{{ product.image }}');" >
             <div class="back-prod">
-              <a href="{% url 'basket:add' product.pk %}">
+              <a href="{% url 'products:product' product.pk %}">
                 <div class="but-prod">
                   <img
                     class="arrrow-prod"
@@ -105,7 +105,7 @@
       <div class="trending-products">
         <div class="trending-title">
           <h2 class="TrendingProducts">Trending Products</h2>
-          <a class="btn-link" href="#">
+          <a class="btn-link" href="{% url 'products:index' %}">
             <div class="btn-ghost">
               <h2 class="btn">explore all</h2>
               <img
@@ -116,12 +116,24 @@
           ></a>
         </div>
         <div class="trending-product">
-          <div class="product-11 treding-prod"></div>
-          <div class="product-21 treding-prod"></div>
-          <div class="product-31 treding-prod"></div>
-          <div class="product-41 treding-prod"></div>
-          <div class="product-5 treding-prod"></div>
-          <div class="product-6 treding-prod"></div>
+          {% for product in trending_products %}
+          <div class="treding-prod" style ="background-image: url('{% get_media_prefix %}{{ product.image }}');">
+            <div class="back-prod">
+              <a href="{% url 'products:product' product.pk %}">
+                <div class="but-prod but-Product">
+                  <img
+                    class="arrrow-prod"
+                    src="{% static 'img/arrow.svg' %}"
+                    alt="arrow"
+                  /></div
+              ></a>
+              <h2 class="h-prod">{{ product.name|capfirst }}</h2>
+              <p class="p-prod"> {{ product.description }}</p>
+            </div>
+
+          </div>
+          {% endfor %}
+
         </div>
       </div>
       <div class="slider-footer">
@@ -159,10 +171,22 @@
           </a>
         </div>
         <div class="product-lg">
-          <div class="product-2-sm smal"></div>
-          <div class="product-3-sm smal"></div>
-          <div class="product-4-sm smal"></div>
-          <div class="product-5-sm smal"></div>
+          {% for product in exclusive_products %}
+          <div class="smal" style ="background-image: url('{% get_media_prefix %}{{ product.image }}');" >
+            <div class="back-prod">
+              <a href="{% url 'products:product' product.pk %}">
+                <div class="but-prod">
+                  <img
+                    class="arrrow-prod"
+                    src="{% static 'img/arrow.svg' %}"
+                    alt="arrow"
+                  /></div
+              ></a>
+              <h2 class="h-prod">{{ product.name|capfirst }}</h2>
+              <p class="p-prod"> {{ product.description }}</p>
+            </div>
+          </div>
+          {% endfor %}
         </div>
       </div>
 {% endblock content %}

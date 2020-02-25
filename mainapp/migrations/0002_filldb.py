@@ -56,7 +56,7 @@ def forwards_func(apps, schema_editor):
         category = new_product_cat,
         name = "home chair",
         image = "products_images/product-21.jpg",
-        short_desc = "home chair",
+        short_desc = "home chair trending",
         description = "home chair home",
         price = "324",
         quantity = 36,
@@ -66,7 +66,7 @@ def forwards_func(apps, schema_editor):
         category = new_product_cat,
         name = "classic tableware",
         image = "products_images/product-5.jpg",
-        short_desc = "classic tableware",
+        short_desc = "classic tableware trending",
         description = "classic tableware",
         price = "441",
         quantity = 63,
@@ -87,7 +87,7 @@ def forwards_func(apps, schema_editor):
         category = new_product_cat,
         name = "interior light",
         image = "products_images/product-11.jpg",
-        short_desc = "interior light",
+        short_desc = "interior light trending",
         description = "interior light interior light",
         price = "54",
         quantity = 27,
@@ -98,7 +98,7 @@ def forwards_func(apps, schema_editor):
         category = new_product_cat,
         name = "interior light",
         image = "products_images/product-41.jpg",
-        short_desc = "interior light",
+        short_desc = "interior light trending",
         description = "interior light interior light",
         price = "153",
         quantity = 18,
@@ -119,10 +119,21 @@ def forwards_func(apps, schema_editor):
         category = new_product_cat,
         name = "lampa",
         image = "products_images/product-31.jpg",
-        short_desc = "table lamp",
+        short_desc = "table lamp trending",
         description = "modern table lamp",
         price = "423",
         quantity = 5,
+    )
+
+    product_model.objects.create(
+        pk=15,
+        category = new_product_cat,
+        name = "comfortable chair",
+        image = "products_images/product-7.jpg",
+        short_desc = "comfortable chair",
+        description = "modern comfortable chair",
+        price = "423",
+        quantity = 6,
     )
     # Delete link for product category
     del new_product_cat
@@ -162,7 +173,7 @@ def forwards_func(apps, schema_editor):
         category = new_product_cat,
         name = "modern tableware",
         image = "products_images/product-6.jpg",
-        short_desc = "modern tableware",
+        short_desc = "modern tableware trending",
         description = "modern tableware",
         price = "153",
         quantity = 54,
@@ -189,7 +200,50 @@ def forwards_func(apps, schema_editor):
         price = "321",
         quantity = 8,
     )
+    
+    product_model.objects.create(
+        pk=11,
+        category = new_product_cat,
+        name = "wall lamp",
+        image = "products_images/product-2-sm.jpg",
+        short_desc = "classic armchairs exclusive",
+        description = "beautiful classic armchairs",
+        price = "522",
+        quantity = 10,
+    )
+    
+    product_model.objects.create(
+        pk=12,
+        category = new_product_cat,
+        name = "sofa",
+        image = "products_images/product-3-sm.jpg",
+        short_desc = "classic armchairs exclusive",
+        description = "beautiful classic armchairs",
+        price = "351",
+        quantity = 18,
+    )
+    
+    product_model.objects.create(
+        pk=13,
+        category = new_product_cat,
+        name = "Wall Clock",
+        image = "products_images/product-4-sm.jpg",
+        short_desc = "classic armchairs exclusive",
+        description = "beautiful classic armchairs",
+        price = "151",
+        quantity = 27,
+    )
 
+    product_model.objects.create(
+        pk=14,
+        category = new_product_cat,
+        name = "exclusive lamp",
+        image = "products_images/product-5-sm.jpg",
+        short_desc = "classic armchairs exclusive",
+        description = "beautiful classic armchairs",
+        price = "243",
+        quantity = 72,
+    )
 
 def reverse_func(apps, schema_editor):
     # Load model for make changes

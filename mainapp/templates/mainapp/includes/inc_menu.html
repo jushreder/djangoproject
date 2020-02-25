@@ -18,18 +18,6 @@
     </li>
     <li class="menu-li">
       <a
-        class="menu {% if request.resolver_match.url_name == 'history' %}activ-menu{% endif %}"
-        href="{% url 'history' %}"
-        >HISTORY</a>
-    </li>
-    <li class="menu-li">
-      <a
-        class="menu {% if request.resolver_match.namespace == 'showroom' %}activ-menu{% endif %}"
-        href="{% url 'showroom:index' %}"
-        >SHOWROOM</a>
-    </li>
-    <li class="menu-li">
-      <a
         class="menu {% if request.resolver_match.url_name == 'contact' %}activ-menu{% endif %}"
         href="{% url 'contact' %}"
         >CONTACT</a>
@@ -55,14 +43,13 @@
       /></a>
     </li>
     {% endcomment %}
-    <!-- <li class="menu-li">
-      <i class="fa fa-shopping-basket fa-lg"></i>
-    </li> -->
 
     <a href="{% url 'basket:view' %}" class="fa fa-shopping-basket fa-lg basket">
       <span>
-          <!-- {% if basket %} {{ basket|length }} {% endif %} -->
-          {% if total_amount %} {{ total_amount }} -> {{ total_cost }} {% endif %}
+
+          {% if basket %}
+          ${{ basket.0.total_cost|floatformat:0 }} ({{ basket.0.total_quantity }} items)
+          {% endif %}
       </span>
   </a>
   </ul>

@@ -32,3 +32,12 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.category.name})"
+
+class Product_option(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    name = models.CharField(verbose_name="имя продукта", max_length=128)
+    option = models.CharField(verbose_name="вариант продукта", max_length=128)
+    image = models.ImageField(upload_to="products_images", blank=True)
+
+    def __str__(self):
+        return f"{self.name} {self.option}"

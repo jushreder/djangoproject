@@ -3,14 +3,12 @@
 
 {% block header %}
       <div class="Show-back">
-
           {% include 'mainapp/includes/inc_menu.html' %}
-
       </div>
       <div class="show-menu">
         <div class="show-strock">
           <ul class="show-list">
-            {% include 'mainapp/includes/inc_showroom_menu.html' %}
+            {% include 'mainapp/includes/inc_categories_menu.html' %}
           </ul>
         </div>
       </div>
@@ -19,22 +17,26 @@
 {% block content %}
       <div class="show-product">
         <div class="show-slider-1 show-slider-0">
-          <img src="{% static 'img/slider1.jpg' %}" alt="slider1" />
+          <img src="/media/{{ product.image }}" alt="slider1" 
+          style="width: 100%;"/>
           <div class="show-controll">
-            <div class="show-control1"></div>
-            <div class="show-control2"></div>
-            <div class="show-control3"></div>
+           {% for product in product_option %}
+            <div class="show-control1">
+            <img src="/media/{{ product.image }}" alt="slider1" 
+            style="width: 100%;"/>
+            </div>
+            {% endfor %}
           </div>
         </div>
         <div class="show-slider-2 show-slider-0">
-          <h2 class="show-h2">Fishnet Chair</h2>
+          <h2 class="show-h2">{{ product.name|capfirst }}</h2>
           <h3 class="show-h3">Hot Deal</h3>
           <div class="show-price">
             <p class="show-price-index">$</p>
-            <p class="">36.7</p>
+            <p class="">{{ product.price }}</p>
             <p class="show-price-index">/sq</p>
           </div>
-          <a class="how-btn-link" href="#">
+          <a class="how-btn-link" href="{% url 'basket:add' product.pk %}">
             <div class="show-btn">
               <div class="show-btn-block">
                 <p class="show-btn-arrow">Order Us</p>
@@ -42,10 +44,9 @@
               </div></div
           ></a>
           <p class="show-cont">
-            The majesty of Mountains - Ugmonk style. <br />
+            {{ product.short_desc }} <br />
             <br />
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore <br />
+            {{ product.description }} <br />
             <br />
             et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
             exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -57,10 +58,11 @@
           </p>
         </div>
       </div>
+      {% comment %}
       <div class="show-slider-related">
         <div class="related-title">
           <h2 class="relatedProducts">Related Products</h2>
-          <a class="btn-link" href="#">
+          <a class="btn-link" href="{% url 'products:index' %}">
             <div class="btn-ghost">
               <h2 class="btn">explore all</h2>
               <img
@@ -70,15 +72,26 @@
               /></div
           ></a>
         </div>
-        <div class="show-relatedProducts">
-          <div class="show-relatedProducts1"></div>
-          <div class="show-relatedProducts2"></div>
-          <div class="show-relatedProducts3"></div>
+        
+        <div class="Product-set set-1 ">
+          {% for product in same_products %}
+          <div class="treding-prod" style="background-image: url('{% get_media_prefix %}{{ product.image }}');"> 
+            <div class="back-prod">
+              <a href="{% url 'basket:add' product.pk %}">
+                <div class="but-prod but-Product">
+                  <img
+                    class="arrrow-prod"
+                    src="{% static 'img/arrow.svg' %}"
+                    alt="arrow"
+                  /></div
+              ></a>
+              <h2 class="h-prod">{{ product.name|capfirst }}</h2>
+              <p class="p-prod"> {{ product.description }}</p>
+            </div>
+          </div> 
+         {% endfor %}  
         </div>
+        
       </div>
+      {% endcomment%}
 {% endblock content %}
-
-
-
-
-

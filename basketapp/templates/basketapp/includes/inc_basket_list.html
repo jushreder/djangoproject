@@ -1,0 +1,32 @@
+{% for item in basket_items %}
+    <div class="basket_record">
+      <div class ="basket_img">
+      <img src="/media/{{ item.product.image }}" 
+           alt="{{ item.product.short_desc }}" style="height: 100%;">
+      </div>
+      <div class="category_name">{{ item.product.category.name }}</div> 
+      <div class="product_name">{{ item.product.name }}</div>
+      <div class="product_price">$&nbsp{{ item.product.price }}</div>
+      <div>
+      <input  class= "basket_inpit" type="number" name="{{ item.pk }}" 
+                           min="0" 
+                           value="{{ item.quantity }}">
+      </div>
+      <div class="product_cost">$&nbsp{{ item.product_cost }}</div>
+      <div>
+      <button class="btn_delete">
+        <a href="{% url 'basket:remove' item.pk %}" class="btn_del">
+          delete
+        </a>
+      </button>
+    </div>
+    </div>
+  {% endfor %}
+
+  {% if basket_items %}
+    <div class="basket_summary">
+      There are  {{ basket_items.0.total_quantity }} items in the basket with a total value of
+      ${{ basket_items.0.total_cost }} 
+    </div>
+  {% endif %}
+        

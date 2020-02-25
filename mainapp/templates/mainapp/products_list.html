@@ -1,0 +1,76 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block header %}
+<div class="hero-back">     
+          {% include 'mainapp/includes/inc_menu.html' %}
+        <h2 class="Contact-Us">Our Products Range</h2>
+</div>
+{% endblock header %}
+
+{% block content %}
+<div class="Product-location">
+  <div class="Product-strock">
+    <ul class="product-list">
+          {% include 'mainapp/includes/inc_categories_menu.html' %}
+    </ul>   
+          <div class="strock-line"></div>
+  </div>    
+        <div class="Product-set set-1">
+          {% for product in products %}
+          <div class="treding-prod" style="background-image: url('{% get_media_prefix %}{{ product.image }}');"> 
+            <div class="back-prod">
+              <a href="{% url 'products:product' product.pk %}">
+                <div class="but-prod but-Product">
+                  <img
+                    class="arrrow-prod"
+                    src="{% static 'img/arrow.svg' %}"
+                    alt="arrow"
+                  /></div
+              ></a>
+              <h2 class="h-prod">{{ product.name|capfirst }}</h2>
+              <p class="p-prod"> {{ product.description }}</p>
+            </div>
+          </div> 
+         {% endfor %}  
+ 
+        </div>
+        <div class="product-set-3">
+          <a href="#">
+            <!-- <img class="curl_s" src="{% static 'img/curl_s.png' %}" alt=""/> -->
+            <i class="fa fa-refresh fa-2x curl_s" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="promo-product product-set-4">
+          <div class="promo-prod promo-img1">
+            <h3 class="promo-h3">exclusive</h3>
+            <h2 class="promo-h2">Fishnet Chair</h2>
+            <p class="promo-p">
+              Seat and back with upholstery made of cold cure foam. Steel frame,
+              available in matt
+            </p>
+            <a style="text-decoration: none;" href="#">
+              <div class="back promo-a">
+                Order Us
+                <img class="arrow" src="{% static 'img/arrow.svg' %}" alt="arrow" />
+              </div>
+            </a>
+          </div>
+          <div class="promo-prod promo-img">
+            <h3 class="promo-h3">exclusive</h3>
+            <h2 class="promo-h2">Fishnet Chair</h2>
+            <p class="promo-p">
+              Seat and back with upholstery made of cold cure foam. Steel frame,
+              available in matt
+            </p>
+            <a style="text-decoration: none;" href="#">
+              <div class="back promo-a">
+                Order Us
+                <img class="arrow" src="{% static 'img/arrow.svg' %}" alt="arrow" />
+              </div>
+            </a>
+          </div>
+        </div>
+</div>
+{% endblock content %}
+

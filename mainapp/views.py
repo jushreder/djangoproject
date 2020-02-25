@@ -2,75 +2,59 @@ from django.shortcuts import render
 from django.conf import settings
 from django.utils import timezone
 
-from mainapp.models import Contact, ProductCategory, Product
+from mainapp.models import Contact, ProductCategory, Product, Product_option
 from basketapp.models import Basket
 from django.shortcuts import get_object_or_404
 
-# import json
-# def getProduct(name_file):
-#     json_data = open(name_file)
-#     product_list = json.load(json_data)
-#     json_data.close()
-#     return product_list
+import random
 
+def get_basket(user):
+    if user.is_authenticated:
+        return Basket.objects.filter(user=user)
+    else:
+        return []
 
-# Create your views here.
+def get_hot_product():
+    products = Product.objects.all()
 
-def getBasket(user_is):
-    total_amount = 0
-    total_cost = 0    
-    if user_is.is_authenticated:
-        basket = Basket.objects.filter(user=user_is)        
-        for product_basket in basket:
-            total_amount += product_basket.quantity
-            total_cost += Product.objects.get(pk=product_basket.product_id).price * product_basket.quantity       
-    return [total_amount, total_cost]
+    return random.sample(list(products), 1)[0]
 
+def get_same_products(hot_product):
+    same_products = Product.objects.filter(category=hot_product.category).\
+                                    exclude(pk=hot_product.pk)[:3]
 
-def main(request):
+    return same_products
+
+def main(request, pk='Featured'):
     title = "hOME"
+    exclusive_products = Product.objects.filter(short_desc__endswith = 'exclusive')
+    trending_products =  Product.objects.filter(short_desc__endswith = 'trending')
     featured_products = Product.objects.all()[:4]
-    # total_amount = 0
-    # total_cost = 0
-    # basket = []
-    # if request.user.is_authenticated:
-    #     basket = Basket.objects.filter(user=request.user)
-        
-    #     for product_basket in basket:
-    #         total_amount += product_basket.quantity
-    #         total_cost += Product.objects.get(pk=product_basket.product_id).price * product_basket.quantity
-
-    # content = {"title": title, "featured_products": featured_products, "basket":basket}
-    rezult = getBasket(request.user)
-    total_amount =rezult[0]
-    total_cost = rezult[1]
+    basket = get_basket(request.user)
 
     content = {"title": title, 
                "featured_products": featured_products,
-               "total_amount":total_amount,
-               "total_cost":total_cost}
+               "exclusive_products" : exclusive_products,
+               "trending_products" : trending_products,
+               "basket" : basket
+               }
 
     
     return render(request, "mainapp/index.html", content)
 
 
+
 def products(request, pk=None):
     title = "pRODUCTS"
     links_menu = ProductCategory.objects.all()
-
-    # basket = []
-    # if request.user.is_authenticated:
-    #     basket = Basket.objects.filter(user=request.user)
-
-    rezult = getBasket(request.user)
-    total_amount =rezult[0]
-    total_cost = rezult[1]
+    basket = get_basket(request.user)
     
     if pk is not None:
         if pk == 0:
             products = Product.objects.all().order_by('price')
             category = {"name": "all"}
         else:
+
             category = get_object_or_404(ProductCategory, pk = pk)
             products = Product.objects.filter(category__pk=pk).order_by('price')
 
@@ -78,19 +62,24 @@ def products(request, pk=None):
                "links_menu": links_menu,
                "products": products,
                "category" : category,
-               "total_amount":total_amount,
-               "total_cost":total_cost}
-            return render(request, "mainapp/products.html", content)
-
-
-    
+               "basket" : basket,               
+               }
+            return render(request, "mainapp/products_list.html", content)
+   
     products = Product.objects.all()
-    
+
+    hot_product = get_hot_product()
+    same_products = get_same_products(hot_product)
+    print(hot_product.id)
+
+    product_option = Product_option.objects.filter(product_id = hot_product.id)
     content = {"title": title,
                "links_menu": links_menu,
-               "products": products,
-               "total_amount":total_amount,
-               "total_cost":total_cost}
+               "hot_product": hot_product,
+               "same_products" : same_products,
+               "basket" : basket,
+               "product_option" : product_option
+              }
 
     return render(request, "mainapp/products.html", content)
 
@@ -99,40 +88,27 @@ def contact(request):
     title = "cONTACTS"
     locations = Contact.objects.all()
     vizit_date = timezone.now()
-    rezult = getBasket(request.user)
-    total_amount =rezult[0]
-    total_cost = rezult[1]
+    basket = get_basket(request.user)
+
     content = {"title": title,
                "locations": locations,
                "vizit_date": vizit_date,
-               "total_amount":total_amount,
-               "total_cost":total_cost}
+               "basket" : basket,
+               }
                
     return render(request, "mainapp/contact.html", content)
 
+def product(request, pk):
+    title = 'продукты'
+    product_option = Product_option.objects.filter(product_id=pk)
+    content = {
+        'title': title, 
+        'links_menu': ProductCategory.objects.all(), 
+        'product': get_object_or_404(Product, pk=pk), 
+        'basket': get_basket(request.user),
+        "product_option" : product_option
+    }
+	
 
-def history(request):
-    title = "hISTORY"
-    rezult = getBasket(request.user)
-    total_amount =rezult[0]
-    total_cost = rezult[1]
-    content = {"title": title,
-               "total_amount":total_amount,
-               "total_cost":total_cost}
-    return render(request, "mainapp/history.html", content)
-
-
-def showroom(request, pk=None):
-    title = "sHOWROOM"
-    links_menu = ProductCategory.objects.all()
-    rezult = getBasket(request.user)
-    total_amount =rezult[0]
-    total_cost = rezult[1]
-
-    content = {"title": title,
-               "links_menu": links_menu,
-               "total_amount":total_amount,
-               "total_cost":total_cost}
- 
-    return render(request, "mainapp/showroom.html", content)
+    return render(request, 'mainapp/product.html', content)
 

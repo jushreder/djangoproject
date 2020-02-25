@@ -2,25 +2,81 @@
 {% load static %}
 
 {% block header %}
-<div class="hero-back">     
+      <div class="Show-back">
           {% include 'mainapp/includes/inc_menu.html' %}
-        <h2 class="Contact-Us">Our Products Range</h2>
-</div>
+      </div>
+      <div class="show-menu">
+        <div class="show-strock">
+          <ul class="show-list">
+            {% include 'mainapp/includes/inc_categories_menu.html' %}
+          </ul>
+        </div>
+      </div>
 {% endblock header %}
 
 {% block content %}
-<div class="Product-location">
-  <div class="Product-strock">
-    <ul class="product-list">
-          {% include 'mainapp/includes/inc_categories_menu.html' %}
-    </ul>   
-          <div class="strock-line"></div>
-  </div>    
-        <div class="Product-set set-1">
-          {% for product in products %}
+      <div class="show-product">
+        <div class="show-slider-1 show-slider-0">
+          <img src="/media/{{ hot_product.image }}" alt="slider1" 
+          style="width: 100%;"/>
+          <div class="show-controll">
+            {% for product in product_option %}
+            <div class="show-control1">
+            <img src="/media/{{ product.image }}" alt="slider1" 
+            style="width: 100%;"/>
+            </div>
+            {% endfor %} 
+          
+          </div>
+        </div>
+        <div class="show-slider-2 show-slider-0">
+          <h2 class="show-h2">{{ hot_product.name|capfirst }}</h2>
+          <h3 class="show-h3">Hot Deal</h3>
+          <div class="show-price">
+            <p class="show-price-index">$</p>
+            <p class="">{{ hot_product.price }}</p>
+            <p class="show-price-index">/sq</p>
+          </div>
+          <a class="how-btn-link" href="{% url 'basket:add' hot_product.pk %}">
+            <div class="show-btn">
+              <div class="show-btn-block">
+                <p class="show-btn-arrow">Order Us</p>
+                <img src="{% static 'img/arrow.png' %}" alt="arrow" class="show-btn-img" />
+              </div></div
+          ></a>
+          <p class="show-cont">
+            {{ hot_product.short_desc }} <br />
+            <br />
+            {{ hot_product.description }} <br />
+            <br />
+            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. <br />
+            <br />
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident.
+          </p>
+        </div>
+      </div>
+      <div class="show-slider-related">
+        <div class="related-title">
+          <h2 class="relatedProducts">Related Products</h2>
+          <a class="btn-link" href="{% url 'products:index' %}">
+            <div class="btn-ghost">
+              <h2 class="btn">explore all</h2>
+              <img
+                style="width: 9px; height: 12px;"
+                src="{% static 'img/arrow.svg' %}"
+                alt="arrow"
+              /></div
+          ></a>
+        </div>
+        <div class="Product-set set-1 ">
+          {% for product in same_products %}
           <div class="treding-prod" style="background-image: url('{% get_media_prefix %}{{ product.image }}');"> 
             <div class="back-prod">
-              <a href="{% url 'basket:add' product.pk %}">
+              <a href="{% url 'products:product' product.pk %}">
                 <div class="but-prod but-Product">
                   <img
                     class="arrrow-prod"
@@ -33,41 +89,11 @@
             </div>
           </div> 
          {% endfor %}  
- 
         </div>
-        <div class="product-set-3">
-          <a href="#"><img class="curl_s" src="{% static 'img/curl_s.png' %}" alt=""/></a>
-        </div>
-        <div class="promo-product product-set-4">
-          <div class="promo-prod promo-img1">
-            <h3 class="promo-h3">exclusive</h3>
-            <h2 class="promo-h2">Fishnet Chair</h2>
-            <p class="promo-p">
-              Seat and back with upholstery made of cold cure foam. Steel frame,
-              available in matt
-            </p>
-            <a style="text-decoration: none;" href="#">
-              <div class="back promo-a">
-                Order Us
-                <img class="arrow" src="{% static 'img/arrow.svg' %}" alt="arrow" />
-              </div>
-            </a>
-          </div>
-          <div class="promo-prod promo-img">
-            <h3 class="promo-h3">exclusive</h3>
-            <h2 class="promo-h2">Fishnet Chair</h2>
-            <p class="promo-p">
-              Seat and back with upholstery made of cold cure foam. Steel frame,
-              available in matt
-            </p>
-            <a style="text-decoration: none;" href="#">
-              <div class="back promo-a">
-                Order Us
-                <img class="arrow" src="{% static 'img/arrow.svg' %}" alt="arrow" />
-              </div>
-            </a>
-          </div>
-        </div>
-</div>
+      </div>
 {% endblock content %}
+
+
+
+
 
