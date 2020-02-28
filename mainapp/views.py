@@ -70,8 +70,6 @@ def products(request, pk=None):
 
     hot_product = get_hot_product()
     same_products = get_same_products(hot_product)
-    print(hot_product.id)
-
     product_option = Product_option.objects.filter(product_id = hot_product.id)
     content = {"title": title,
                "links_menu": links_menu,
