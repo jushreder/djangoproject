@@ -1,0 +1,56 @@
+{% load static %}
+<div class="navbar">
+  <a href="#"
+    ><img class="logo" src="{% static 'img/logo.svg' %}" alt="logo"
+  /></a>
+  <ul class="block-menu">
+    <li class="menu-li">
+      <a
+        class="menu {% if request.resolver_match.url_name == 'main' %}activ-menu{% endif %}"
+        href="{% url 'main' %}"
+        >HOME</a>
+    </li>
+    <li class="menu-li">
+      <a
+        class="menu {% if request.resolver_match.namespace == 'products' %}activ-menu{% endif %}"
+        href="{% url 'products:index' %}"
+        >PRODUCTS</a>
+    </li>
+    <li class="menu-li">
+      <a
+        class="menu {% if request.resolver_match.url_name == 'contact' %}activ-menu{% endif %}"
+        href="{% url 'contact' %}"
+        >CONTACT</a>
+    </li>
+    {% if user.is_authenticated %}
+    <li class="menu-li">
+       <a class="menu"  href="{% url 'auth:edit' %}"> 
+          {{ user.first_name|default:'user' }}          
+       </a>
+    </li>
+    {% endif %}
+    <li class="menu-li">
+      {% if user.is_authenticated %}
+        <a class="menu" href="{% url 'auth:logout' %}">logout</a>
+      {% else %}
+        <a class="menu" href="{% url 'auth:login' %}"> login </a>
+      {% endif %}
+    </li>
+   {% comment %}
+    <li class="menu-li">
+      <a href="#">
+        <img class="img-menu" src="{% static 'img/search.png' %}" alt="search"
+      /></a>
+    </li>
+    {% endcomment %}
+
+    <a href="{% url 'basket:view' %}" class="fa fa-shopping-basket fa-lg basket">
+      <span>
+
+          {% if basket %}
+          ${{ basket.0.total_cost|floatformat:0 }} ({{ basket.0.total_quantity }} items)
+          {% endif %}
+      </span>
+  </a>
+  </ul>
+</div>

@@ -1,0 +1,35 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block header %}
+      <div class="hero-back">
+
+          {% include 'mainapp/includes/inc_menu.html' %}
+
+        <h2 class="Contact-Us">Contact Us {{ vizit_date }} </h2>
+      </div>
+{% endblock header %}
+
+{% block content %}
+      <div class="Contact-location">
+        {% for location in locations %}
+        <div class="Contact-back">
+          <img class="Contact-img" src="{% static 'img/point.png' %}" alt="point" />
+
+          <h2 class="California">{{ location.city }}</h2>
+          <div class="Comtact-details">
+            <p class="Comtact-Phone">Phone:</p>
+            <p class="Comtact-number">{{ location.phone }}</p>
+            <p class="Comtact-Phone Comtact-Phone-m">Email:</p>
+            <p class="Comtact-number">{{ location.email }}</p>
+            <p class="Comtact-Phone">Address:</p>
+            <p class="Comtact-address">{{ location.address }}, {{ location.city }}, {{location.state}}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      
+{% endblock content %}
+
+
+

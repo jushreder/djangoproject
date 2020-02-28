@@ -1,0 +1,97 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block header %}
+      <div class="Show-back">
+          {% include 'mainapp/includes/inc_menu.html' %}
+      </div>
+      <div class="show-menu">
+        <div class="show-strock">
+          <ul class="show-list">
+            {% include 'mainapp/includes/inc_categories_menu.html' %}
+          </ul>
+        </div>
+      </div>
+{% endblock header %}
+
+{% block content %}
+      <div class="show-product">
+        <div class="show-slider-1 show-slider-0">
+          <img src="/media/{{ product.image }}" alt="slider1" 
+          style="width: 100%;"/>
+          <div class="show-controll">
+           {% for product in product_option %}
+            <div class="show-control1">
+            <img src="/media/{{ product.image }}" alt="slider1" 
+            style="width: 100%;"/>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="show-slider-2 show-slider-0">
+          <h2 class="show-h2">{{ product.name|capfirst }}</h2>
+          <h3 class="show-h3">Hot Deal</h3>
+          <div class="show-price">
+            <p class="show-price-index">$</p>
+            <p class="">{{ product.price }}</p>
+            <p class="show-price-index">/sq</p>
+          </div>
+          <a class="how-btn-link" href="{% url 'basket:add' product.pk %}">
+            <div class="show-btn">
+              <div class="show-btn-block">
+                <p class="show-btn-arrow">Order Us</p>
+                <img src="{% static 'img/arrow.png' %}" alt="arrow" class="show-btn-img" />
+              </div></div
+          ></a>
+          <p class="show-cont">
+            {{ product.short_desc }} <br />
+            <br />
+            {{ product.description }} <br />
+            <br />
+            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. <br />
+            <br />
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident.
+          </p>
+        </div>
+      </div>
+      {% comment %}
+      <div class="show-slider-related">
+        <div class="related-title">
+          <h2 class="relatedProducts">Related Products</h2>
+          <a class="btn-link" href="{% url 'products:index' %}">
+            <div class="btn-ghost">
+              <h2 class="btn">explore all</h2>
+              <img
+                style="width: 9px; height: 12px;"
+                src="{% static 'img/arrow.svg' %}"
+                alt="arrow"
+              /></div
+          ></a>
+        </div>
+        
+        <div class="Product-set set-1 ">
+          {% for product in same_products %}
+          <div class="treding-prod" style="background-image: url('{% get_media_prefix %}{{ product.image }}');"> 
+            <div class="back-prod">
+              <a href="{% url 'basket:add' product.pk %}">
+                <div class="but-prod but-Product">
+                  <img
+                    class="arrrow-prod"
+                    src="{% static 'img/arrow.svg' %}"
+                    alt="arrow"
+                  /></div
+              ></a>
+              <h2 class="h-prod">{{ product.name|capfirst }}</h2>
+              <p class="p-prod"> {{ product.description }}</p>
+            </div>
+          </div> 
+         {% endfor %}  
+        </div>
+        
+      </div>
+      {% endcomment%}
+{% endblock content %}

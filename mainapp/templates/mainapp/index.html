@@ -1,0 +1,207 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block header %}
+      <div class="slider">        
+          {% include 'mainapp/includes/inc_menu.html' %}  
+        <div class="slider-content">
+          <h2 class="tag">TRENDING</h2>
+          <h1 class="name">Fishnet Chair</h1>
+          <p class="details">
+            Seat and back with upholstery made of cold cure foam. Steel frame,
+            available in matt powder-coated black
+          </p>
+          <a style="text-decoration: none;" href="#">
+            <div class="back">
+              Order Us
+              <img class="arrow" src="{% static 'img/arrow.svg' %}" alt="arrow" />
+            </div>
+          </a>
+        </div>
+        <div class="navigation">
+          <a href="#"><div class="nav"></div></a>
+          <div class="nav active_nav"></div>
+          <a href="#"><div class="nav"></div></a>
+        </div>
+      </div>
+{% endblock header %}
+
+{% block content %}
+      <div class="featured-product">
+        <div class="tab-controll">
+          <div class="tan-cont">
+            <ul>
+              <li class="tan_list ">
+                <a class="Featured tan_active" href="" #>Featured</a>
+              </li>
+              <li class="tan_list"><a class="New" href="">New</a></li>
+            </ul>
+          </div>
+          <a class="btn-link" href="{% url 'products:index' %}">
+            <div class="btn-ghost">
+              <h2 class="btn">explore all</h2>
+              <img
+                style="width: 9px; height: 12px;"
+                src="{% static 'img/arrow.svg' %}"
+                alt="arrow"
+              /></div
+          ></a>
+        </div>
+        <div class="tab-content">
+        
+        {% comment 'комментарий' %}
+        <a href="{{ product.image_href }}">
+        {% endcomment %}
+
+         {% for product in featured_products %}
+          <div class="product-1" style ="background-image: url('{% get_media_prefix %}{{ product.image }}');" >
+            <div class="back-prod">
+              <a href="{% url 'products:product' product.pk %}">
+                <div class="but-prod">
+                  <img
+                    class="arrrow-prod"
+                    src="{% static 'img/arrow.svg' %}"
+                    alt="arrow"
+                  /></div
+              ></a>
+              <h2 class="h-prod">{{ product.name|capfirst }}</h2>
+              <p class="p-prod"> {{ product.description }}</p>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+      </div>
+      <div class="promo-product">
+        <div class="promo-prod promo-img1">
+          <h3 class="promo-h3">exclusive</h3>
+          <h2 class="promo-h2">Fishnet Chair</h2>
+          <p class="promo-p">
+            Seat and back with upholstery made of cold cure foam. Steel frame,
+            available in matt
+          </p>
+          <a style="text-decoration: none;" href="#">
+            <div class="back promo-a">
+              Order Us
+              <img class="arrow" src="{% static 'img/arrow.svg' %}" alt="arrow" />
+            </div>
+          </a>
+        </div>
+        <div class="promo-prod promo-img">
+          <h3 class="promo-h3">exclusive</h3>
+          <h2 class="promo-h2">Fishnet Chair</h2>
+          <p class="promo-p">
+            Seat and back with upholstery made of cold cure foam. Steel frame,
+            available in matt
+          </p>
+          <a style="text-decoration: none;" href="#">
+            <div class="back promo-a">
+              Order Us
+              <img class="arrow" src="{% static 'img/arrow.svg' %}" alt="arrow" />
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="trending-products">
+        <div class="trending-title">
+          <h2 class="TrendingProducts">Trending Products</h2>
+          <a class="btn-link" href="{% url 'products:index' %}">
+            <div class="btn-ghost">
+              <h2 class="btn">explore all</h2>
+              <img
+                style="width: 9px; height: 12px;"
+                src="{% static 'img/arrow.svg' %}"
+                alt="arrow"
+              /></div
+          ></a>
+        </div>
+        <div class="trending-product">
+          {% for product in trending_products %}
+          <div class="treding-prod" style ="background-image: url('{% get_media_prefix %}{{ product.image }}');">
+            <div class="back-prod">
+              <a href="{% url 'products:product' product.pk %}">
+                <div class="but-prod but-Product">
+                  <img
+                    class="arrrow-prod"
+                    src="{% static 'img/arrow.svg' %}"
+                    alt="arrow"
+                  /></div
+              ></a>
+              <h2 class="h-prod">{{ product.name|capfirst }}</h2>
+              <p class="p-prod"> {{ product.description }}</p>
+            </div>
+
+          </div>
+          {% endfor %}
+
+        </div>
+      </div>
+      <div class="slider-footer">
+        <h2 class="tag tag_footer">Hot deal</h2>
+        <h1 class="name name_footer">Fishnet Chair</h1>
+        <p class="details details_footer">
+          Seat and back with upholstery made of cold cure foam. Steel frame,
+          available in matt powder-coated black
+        </p>
+        <a style="text-decoration: none;" href="#">
+          <div class="back back_footer">
+            Order Us
+            <img class="arrow" src="{% static 'img/arrow.svg' %}" alt="arrow" />
+          </div>
+        </a>
+        <div class="navigation nav_footer">
+          <a href="#"><div class="nav"></div></a>
+          <div class="nav active_nav"></div>
+          <a href="#"><div class="nav"></div></a>
+        </div>
+      </div>
+      <div class="exclusive-product">
+        <div class="product-1-lg">
+          <h3 class="promo-h3 exclusive-h3">exclusive</h3>
+          <h2 class="promo-h2 exclusive-h2">Fishnet Chair</h2>
+          <p class="promo-p exclusive-p">
+            Seat and back with upholstery made of cold cure foam. Steel frame,
+            available in matt
+          </p>
+          <a style="text-decoration: none;" href="#">
+            <div class="back promo-a exclusive-a">
+              Order Us
+              <img class="arrow" src="{% static 'img/arrow.svg' %}" alt="arrow" />
+            </div>
+          </a>
+        </div>
+        <div class="product-lg">
+          {% for product in exclusive_products %}
+          <div class="smal" style ="background-image: url('{% get_media_prefix %}{{ product.image }}');" >
+            <div class="back-prod">
+              <a href="{% url 'products:product' product.pk %}">
+                <div class="but-prod">
+                  <img
+                    class="arrrow-prod"
+                    src="{% static 'img/arrow.svg' %}"
+                    alt="arrow"
+                  /></div
+              ></a>
+              <h2 class="h-prod">{{ product.name|capfirst }}</h2>
+              <p class="p-prod"> {{ product.description }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+{% endblock content %}
+
+{% block back-img %}
+<div class="back-img">
+        <h3 class="tag-back">mobile app</h3>
+        <h2 class="name-back">Find. Follow. Favorite.</h2>
+        <p class="details-back">Save your favorites and share your style.</p>
+        <a href="#"
+          ><img src="{% static 'img/app-store.png' %}" alt="app-store" class="app-store"
+        /></a>
+        <a href="#"
+          ><img src="{% static 'img/google-play.png' %}" alt="google-play" class="google-play"
+        /></a>
+</div>
+{% endblock back-img %}
+

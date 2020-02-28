@@ -1,6 +1,10 @@
 bin/
 lib/
 include/
-db.sqlite3
+*.sqlite3
 pyvenv.cfg
 *.pyc
+.vscode
+_pycache_
+__init__.py
+static/fonts/

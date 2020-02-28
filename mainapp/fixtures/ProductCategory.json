@@ -1,0 +1,42 @@
+[
+  {
+    "model": "mainapp.productcategory",
+    "pk" :1,
+    "fields":{
+      "name" : "home",
+      "description" : "household products"
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk" :2,
+    "fields":{
+      "name" : "office",
+      "description" : "office supplies"
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk" :3,
+    "fields":{
+      "name" : "furniture",
+      "description" : "furniture shop "
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk" :4,
+    "fields":{
+      "name" : "modern",
+      "description" : "modern furniture store"
+    }
+  },
+  {
+    "model": "mainapp.productcategory",
+    "pk" :5,
+    "fields":{
+      "name" : "classic",
+      "description" : "classic furniture store"
+    }
+  }
+]

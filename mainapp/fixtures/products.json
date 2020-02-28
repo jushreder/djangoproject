@@ -1,0 +1,132 @@
+[
+  {
+    "model": "mainapp.product",
+    "pk" :1,
+    "fields":{
+      "category" : 4,
+      "name" : "lamp",
+      "image" : "products_images/product-1.jpg",
+      "short_desc" : "night lamp",
+      "description" : "modern night light",
+      "price" : "179",
+      "quantity" : "15"
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk" :2,
+    "fields":{
+      "category" : 5,
+      "name" : "armchairs",
+      "image" : "products_images/product-2.jpg",
+      "short_desc" : "classic armchairs",
+      "description" : "beautiful classic armchairs",
+      "price" : "321",
+      "quantity" : "8"
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk" :3,
+    "fields":{
+      "category" : 1,
+      "name" : "tableware",
+      "image" : "products_images/product-3.jpg",
+      "short_desc" : "home cookware",
+      "description" : "unique home cookware",
+      "price" : "36",
+      "quantity" : "15"
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk" :4,
+    "fields":{
+      "category" : 4,
+      "name" : "chair",
+      "image" : "products_images/product-4.jpg",
+      "short_desc" : "office chair",
+      "description" : "comfortable office chair",
+      "price" : "261",
+      "quantity" : "36"
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk" :5,
+    "fields":{
+      "category" : 2,
+      "name" : "interior light",
+      "image" : "products_images/product-11.jpg",
+      "short_desc" : "interior light",
+      "description" : " interior light interior light",
+      "price" : "54",
+      "quantity" : "27"
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk" :6,
+    "fields":{
+      "category" : 1,
+      "name" : "home chair",
+      "image" : "products_images/product-21.jpg",
+      "short_desc" : "home chair",
+      "description" : " home chair home",
+      "price" : "324",
+      "quantity" : "36"
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk" :7,
+    "fields":{
+      "category" : 3,
+      "name" : "lampa",
+      "image" : "products_images/product-31.jpg",
+      "short_desc" : "table lamp",
+      "description" : "modern table lamp",
+      "price" : "423",
+      "quantity" : "5"
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk" :8,
+    "fields":{
+      "category" : 2,
+      "name" : "interior light",
+      "image" : "products_images/product-41.jpg",
+      "short_desc" : "interior light",
+      "description" : "modern interior light",
+      "price" : "153",
+      "quantity" : "18"
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk" :9,
+    "fields":{
+      "category" : 1,
+      "name" : "classic tableware",
+      "image" : "products_images/product-5.jpg",
+      "short_desc" : "classic tableware",
+      "description" : "classic tableware",
+      "price" : "441",
+      "quantity" : "63"
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "pk" :10,
+    "fields":{
+      "category" : 4,
+      "name" : "modern tableware",
+      "image" : "products_images/product-6.jpg",
+      "short_desc" : "modern tableware",
+      "description" : "modern tableware",
+      "price" : "153",
+      "quantity" : "54"
+    }
+  }
+]
