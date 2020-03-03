@@ -1,7 +1,7 @@
 {% for item in basket_items %}
     <div class="basket_record">
       <div class ="basket_img">
-      <img src="/media/{{ item.product.image }}" 
+      <img src="/media/{{ item.product.image|default:'products_images/default.png' }}" 
            alt="{{ item.product.short_desc }}" style="height: 100%;">
       </div>
       <div class="category_name">{{ item.product.category.name }}</div> 

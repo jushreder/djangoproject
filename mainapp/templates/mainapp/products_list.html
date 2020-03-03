@@ -5,6 +5,26 @@
 <div class="hero-back">     
           {% include 'mainapp/includes/inc_menu.html' %}
         <h2 class="Contact-Us">Our Products Range</h2>
+
+        <div class="paginator">
+          <div>
+          {% if products.has_previous %}
+          <a href="{% url 'products:page' category.pk products.previous_page_number %}"><i
+                  class="fa fa-chevron-circle-left"></i></a>
+          {% endif %}
+        </div>
+         <div>
+          <span class="current">
+              page {{ products.number }} of {{ products.paginator.num_pages }}
+          </span>
+        </div>
+       <div>
+          {% if products.has_next %}
+          <a href="{% url 'products:page' category.pk products.next_page_number %}"><i
+                  class="fa fa-chevron-circle-right"></i></a>
+          {% endif %}
+        </div>
+      </div>
 </div>
 {% endblock header %}
 
@@ -15,10 +35,11 @@
           {% include 'mainapp/includes/inc_categories_menu.html' %}
     </ul>   
           <div class="strock-line"></div>
+
   </div>    
         <div class="Product-set set-1">
           {% for product in products %}
-          <div class="treding-prod" style="background-image: url('{% get_media_prefix %}{{ product.image }}');"> 
+          <div class="treding-prod" style="background-image: url('/media/{{ product.image }}');"> 
             <div class="back-prod">
               <a href="{% url 'products:product' product.pk %}">
                 <div class="but-prod but-Product">
