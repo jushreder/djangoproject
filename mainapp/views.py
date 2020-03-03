@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.conf import settings
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.utils import timezone
 
 from mainapp.models import Contact, ProductCategory, Product, Product_option
@@ -15,21 +16,23 @@ def get_basket(user):
         return []
 
 def get_hot_product():
-    products = Product.objects.all()
+    products = Product.objects.filter(is_active= True, category__is_active= True)
 
     return random.sample(list(products), 1)[0]
 
 def get_same_products(hot_product):
-    same_products = Product.objects.filter(category=hot_product.category).\
+    same_products = Product.objects.filter(category=hot_product.category, is_active= True).\
                                     exclude(pk=hot_product.pk)[:3]
 
     return same_products
 
 def main(request, pk='Featured'):
     title = "hOME"
-    exclusive_products = Product.objects.filter(short_desc__endswith = 'exclusive')
-    trending_products =  Product.objects.filter(short_desc__endswith = 'trending')
-    featured_products = Product.objects.all()[:4]
+    exclusive_products = Product.objects.filter(is_active= True, category__is_active= True, short_desc__endswith = 'exclusive')
+    trending_products =  Product.objects.filter(is_active= True, category__is_active= True, short_desc__endswith = 'trending')
+    
+    featured_products = Product.objects.filter(is_active= True, category__is_active= True)[:4]
+    # featured_products = Product.objects.all()[:4]
     basket = get_basket(request.user)
 
     content = {"title": title, 
@@ -37,36 +40,44 @@ def main(request, pk='Featured'):
                "exclusive_products" : exclusive_products,
                "trending_products" : trending_products,
                "basket" : basket
-               }
-
-    
+               }   
     return render(request, "mainapp/index.html", content)
 
 
 
-def products(request, pk=None):
+def products(request, pk=None, page=1):
     title = "pRODUCTS"
-    links_menu = ProductCategory.objects.all()
+    links_menu = ProductCategory.objects.filter(is_active= True)
     basket = get_basket(request.user)
     
     if pk is not None:
         if pk == 0:
-            products = Product.objects.all().order_by('price')
-            category = {"name": "all"}
+            products = Product.objects.filter(is_active= True, category__is_active= True).order_by('price')
+            category = {"pk":0, "name": "all"}
         else:
-
             category = get_object_or_404(ProductCategory, pk = pk)
             products = Product.objects.filter(category__pk=pk).order_by('price')
+        
+        paginator = Paginator(products,3)
+        try:
+            products_paginator = paginator.page(page)
+        except PageNotAnInteger:
+            products_paginator = paginator.page(1)
+        except EmptyPage:
+            products_paginator = paginator.page(paginator.num_pages)
 
-            content = {"title": title, 
+
+
+
+        content = {"title": title, 
                "links_menu": links_menu,
-               "products": products,
+               "products": products_paginator,
                "category" : category,
-               "basket" : basket,               
+               "basket" : basket,
+               "media_url": settings.MEDIA_URL,               
                }
-            return render(request, "mainapp/products_list.html", content)
+        return render(request, "mainapp/products_list.html", content)
    
-    products = Product.objects.all()
 
     hot_product = get_hot_product()
     same_products = get_same_products(hot_product)

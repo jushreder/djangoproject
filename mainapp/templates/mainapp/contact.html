@@ -1,12 +1,13 @@
 {% extends 'mainapp/base.html' %}
-{% load static %}
+{% load static mail_to %}
 
 {% block header %}
       <div class="hero-back">
 
           {% include 'mainapp/includes/inc_menu.html' %}
 
-        <h2 class="Contact-Us">Contact Us {{ vizit_date }} </h2>
+        <h2 class="Contact-Us">Contact Us  </h2>
+        <h3> Today {{ vizit_date }}</h3>
       </div>
 {% endblock header %}
 
@@ -21,7 +22,7 @@
             <p class="Comtact-Phone">Phone:</p>
             <p class="Comtact-number">{{ location.phone }}</p>
             <p class="Comtact-Phone Comtact-Phone-m">Email:</p>
-            <p class="Comtact-number">{{ location.email }}</p>
+            <p class="Comtact-number">{{ location.email|mail_to }}</p>
             <p class="Comtact-Phone">Address:</p>
             <p class="Comtact-address">{{ location.address }}, {{ location.city }}, {{location.state}}</p>
           </div>
