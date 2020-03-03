@@ -19,7 +19,7 @@
        
         
         <div class="show-slider-1 show-slider-0">
-          <img src="/media/{{ hot_product.image }}" alt="slider1" 
+          <img src="/media/{{ hot_product.image|default:'products_images/default.png'}}" alt="slider1"
           style="width: 100%;"/>
           <div class="show-controll">
             {% for product in product_option %}
